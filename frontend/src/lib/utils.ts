@@ -11,13 +11,13 @@ const CATEGORIES = [
       "Support and advice for those affected by gender based violence or hate crimes.",
   },
   {
-    key: "benefits",
+    key: "benefits_and_tax_credits",
     title: "Benefits",
     description:
       "Help understanding what benefits you may be entitled to and how to claim them.",
   },
   {
-    key: "debt_and_money",
+    key: "debt",
     title: "Debt and Money",
     description:
       "Guidance on managing debt, budgeting, and financial support options.",

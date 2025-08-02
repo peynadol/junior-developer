@@ -8,7 +8,6 @@ export default async function CategoryPage({
   params: { slug: string };
 }) {
   const { slug } = await params;
-  console.log("Category slug:", slug);
   const res = await fetch("http://localhost:3000/api/data", {
     cache: "no-store",
   });
@@ -24,11 +23,11 @@ export default async function CategoryPage({
   }
 
   return (
-    <main className="flex flex-col items-center gap-8 p-8 sm:p-20">
-      <h1 className="text-2xl font-bold">{categoryMeta.title}</h1>
-      <p className="text-gray-600 max-w-2xl text-center">
+    <main className="px-6 sm:px-12 py-12 max-w-4xl mx-auto space-y-10 text-left">
+      <h1 className="text-4xl font-extrabold">{categoryMeta.title}</h1>
+      <h2 className="text-2xl max-w-2xl text-left underline">
         {categoryMeta.description}
-      </p>
+      </h2>
 
       <div className="flex flex-col gap-8 w-full max-w-3xl">
         {entries.map((entry, i) => (

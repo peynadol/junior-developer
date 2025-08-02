@@ -3,13 +3,13 @@ import ReactMarkdown from "react-markdown";
 
 export default function Content({ entry }: { entry: Entry }) {
   return (
-    <div className="border-2 border-gray-200 p-6 rounded-md bg-white shadow-sm">
-      <div className="prose mb-6 text-gray-900">
+    <article className="text-left text-lg">
+      <div className="mb-6 leading-relaxed">
         <ReactMarkdown>{entry.processed_content}</ReactMarkdown>
       </div>
 
       <div className="mb-4">
-        <h3 className="font-semibold text-gray-800 mb-2">Cited Sources</h3>
+        <h3 className="font-semibold mb-2">Cited Sources</h3>
         <ul className="space-y-2">
           {entry.sources.cited.map((src) => (
             <li
@@ -17,7 +17,7 @@ export default function Content({ entry }: { entry: Entry }) {
               id={`cite-${src.letter}`}
               className="flex items-center gap-2"
             >
-              <span className="font-mono text-sm font-semibold text-gray-600">
+              <span className="font-mono text-sm font-semibold ">
                 [{src.letter}]
               </span>
               <img src={src.favicon} alt="" width={16} height={16} />
@@ -56,6 +56,6 @@ export default function Content({ entry }: { entry: Entry }) {
           <p className="text-sm text-gray-500">No non-cited sources.</p>
         )}
       </div>
-    </div>
+    </article>
   );
 }

@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from models import Data
 from pathlib import Path
 from urllib.parse import urlparse
+import string
 
 def process_entry(entry: dict) -> dict:
     content = entry['content']
@@ -11,7 +12,7 @@ def process_entry(entry: dict) -> dict:
     cited = []
     non_cited = []
     processed = content 
-    citation_number = 1
+    citation_index = 0
     
     for source in sources:
         source_id = source['id']
@@ -21,9 +22,10 @@ def process_entry(entry: dict) -> dict:
         enriched = {**source, "favicon": favicon}
 
         if f"<ref>{source_id}</ref>" in content:
-            processed = processed.replace(f"<ref>{source_id}</ref>", f'<a href="{url}" target="_blank">[{citation_number}]</a>')
+            citation_letter = string.ascii_uppercase[citation_index]
+            processed = processed.replace(f"<ref>{source_id}</ref>", f'<a href="{url}" target="_blank">[{citation_letter}]</a>')
             cited.append(enriched)
-            citation_number += 1
+            citation_index += 1
         else:
             non_cited.append(enriched)
     

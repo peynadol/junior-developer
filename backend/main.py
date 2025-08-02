@@ -7,12 +7,15 @@ import string
 
 def process_entry(entry: dict) -> dict:
     content = entry['content']
-    print("content:", content)
     sources = entry['sources']
     cited = []
     non_cited = []
-    processed = content 
     citation_index = 0
+
+    def get_letter(n):
+        return string.ascii_uppercase[n]
+
+    content = content.replace("<b>", "**").replace("</b>", "**")
     
     for source in sources:
         source_id = source['id']
@@ -21,9 +24,11 @@ def process_entry(entry: dict) -> dict:
         favicon = f"https://{domain}/favicon.ico"
         enriched = {**source, "favicon": favicon}
 
-        if f"<ref>{source_id}</ref>" in content:
-            citation_letter = string.ascii_uppercase[citation_index]
-            processed = processed.replace(f"<ref>{source_id}</ref>", f'<a href="{url}" target="_blank">[{citation_letter}]</a>')
+        ref_tag = f"<ref>{source_id}</ref>"
+
+        if ref_tag in content:
+            citation_letter = get_letter(citation_index)
+            content = content.replace(ref_tag, f"[{citation_letter}]({url})")
             cited.append(enriched)
             citation_index += 1
         else:
@@ -31,8 +36,8 @@ def process_entry(entry: dict) -> dict:
     
     return {
         "category": entry['category'],
-        "original_content": content,
-        "processed_content": processed,
+        "original_content": entry['content'],
+        "processed_content": content,
         "sources": {
             "cited": cited,
             "non_cited": non_cited

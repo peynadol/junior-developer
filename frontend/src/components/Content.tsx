@@ -1,5 +1,6 @@
 "use client";
 import ReactMarkdown from "react-markdown";
+import Image from "next/image";
 
 export default function Content({ entry }: { entry: Entry }) {
   return (
@@ -20,7 +21,7 @@ export default function Content({ entry }: { entry: Entry }) {
               <span className="font-mono text-sm font-semibold ">
                 [{src.letter}]
               </span>
-              <img src={src.favicon} alt="" width={16} height={16} />
+              <Image src={src.favicon} alt="A favicon" width={16} height={16} />
               <a
                 href={src.source}
                 target="_blank"
@@ -40,7 +41,12 @@ export default function Content({ entry }: { entry: Entry }) {
           <ul className="space-y-2">
             {entry.sources.non_cited.map((src) => (
               <li key={src.id} className="flex items-center gap-2">
-                <img src={src.favicon} alt="" width={16} height={16} />
+                <Image
+                  src={src.favicon}
+                  alt="A favicon"
+                  width={16}
+                  height={16}
+                />
                 <a
                   href={src.source}
                   target="_blank"

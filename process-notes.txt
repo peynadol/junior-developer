@@ -1,0 +1,33 @@
+Backend
+
+I began by reading the instructions and interpreted the
+backend task as needing to programmatically scan through each content
+string, detect when a source ID (e.g. \[source123]) was mentioned, and
+replace it with a proper hyperlink to the relevant source. Essentially a find
+and replace. My assumption was that mock.json was meant to act as a static mock 
+database and should not be edited directly. Instead, the server would return 
+a processed version of it.
+
+It's been quite some time since I last used Python (around December), so
+to get my head back into it, I first sketched out the logic in JavaScript, 
+the language I’m most comfortable with. This helped me mentally map out the steps:
+
+* Iterate over each entry
+* Check if each source ID appears in the content string
+* If it does, replace it with an anchor tag using the source’s title and URL
+* Separate cited and non-cited sources
+* Attach a favicon URL based on the source domain
+
+Once I was confident in the logic, I translated it into Python using FastAPI.
+I kept all logic scoped to the `/data` endpoint as the task only called
+for one route. Middleware would have been unnecessary for this case.
+
+I used `urllib.parse` from Python’s standard library to extract domains for
+the favicon URLs. I added those to each source as part of an enriched object.
+I then returned both the original content and the processed version to give
+the frontend flexibility.
+
+To ensure data shape consistency, I added to the Pydantic schema, 
+which I treated like a Python equivalent of TypeScript’s type system.
+It helped ensure the returned data structure matched expectations, 
+and made the contract between backend and frontend more robust.

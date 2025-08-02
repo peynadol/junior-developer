@@ -8,10 +8,10 @@ def process_entry(entry: dict) -> dict:
     content = entry['content']
     print("content:", content)
     sources = entry['sources']
-    # print("sources:", sources)
     cited = []
     non_cited = []
     processed = content 
+    citation_number = 1
     
     for source in sources:
         source_id = source['id']
@@ -19,10 +19,11 @@ def process_entry(entry: dict) -> dict:
         domain = urlparse(url).netloc
         favicon = f"https://{domain}/favicon.ico"
         enriched = {**source, "favicon": favicon}
-        
-        if f"[{source_id}]" in content:
-            processed = processed.replace(f"[{source_id}]", f"[{source_id}]({url})")
+
+        if f"<ref>{source_id}</ref>" in content:
+            processed = processed.replace(f"<ref>{source_id}</ref>", f'<a href="{url}" target="_blank">[{citation_number}]</a>')
             cited.append(enriched)
+            citation_number += 1
         else:
             non_cited.append(enriched)
     

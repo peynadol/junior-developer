@@ -6,6 +6,9 @@ from urllib.parse import urlparse
 import string
 
 def process_entry(entry: dict) -> dict:
+    from urllib.parse import urlparse
+    import string
+
     content = entry['content']
     sources = entry['sources']
     cited = []
@@ -15,25 +18,38 @@ def process_entry(entry: dict) -> dict:
     def get_letter(n):
         return string.ascii_uppercase[n]
 
+    # Replace bold tags with markdown-style bold
     content = content.replace("<b>", "**").replace("</b>", "**")
-    
+
     for source in sources:
         source_id = source['id']
         url = source['source']
         domain = urlparse(url).netloc
         favicon = f"https://{domain}/favicon.ico"
-        enriched = {**source, "favicon": favicon}
 
         ref_tag = f"<ref>{source_id}</ref>"
 
         if ref_tag in content:
-            citation_letter = get_letter(citation_index)
-            content = content.replace(ref_tag, f"[{citation_letter}]({url})")
+            letter = get_letter(citation_index)
+
+            # Replace <ref> tags with spaced markdown citations [[A]](#cite-A)
+            replacement = f" [[{letter}]](#cite-{letter})"
+
+            # Handle spaced refs first (prevents double spaces), then unspaced refs (adds space)
+            content = content.replace(f" {ref_tag}", replacement)
+            content = content.replace(ref_tag, replacement)
+
+            enriched = {
+                **source,
+                "favicon": favicon,
+                "letter": letter
+            }
             cited.append(enriched)
             citation_index += 1
         else:
+            enriched = {**source, "favicon": favicon}
             non_cited.append(enriched)
-    
+
     return {
         "category": entry['category'],
         "original_content": entry['content'],
@@ -43,6 +59,7 @@ def process_entry(entry: dict) -> dict:
             "non_cited": non_cited
         }
     }
+
 
 app = FastAPI()
 

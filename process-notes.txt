@@ -31,3 +31,6 @@ To ensure data shape consistency, I added to the Pydantic schema,
 which I treated like a Python equivalent of TypeScript’s type system.
 It helped ensure the returned data structure matched expectations, 
 and made the contract between backend and frontend more robust.
+
+I'm trying returning markdown formatted content. I think this will
+make it easier to format on the frontend AND remove the need for dangerouslySetInnerHtml

@@ -5,6 +5,7 @@ class Source(BaseModel):
     title: str
     source: str
     favicon: str
+    letter: str | None = None
 
 class SourcesGroup(BaseModel):
     cited: list[Source]

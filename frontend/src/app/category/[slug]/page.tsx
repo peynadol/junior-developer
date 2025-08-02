@@ -7,16 +7,18 @@ export default async function CategoryPage({
 }: {
   params: { slug: string };
 }) {
+  const { slug } = await params;
+  console.log("Category slug:", slug);
   const res = await fetch("http://localhost:3000/api/data", {
     cache: "no-store",
   });
   const data = await res.json();
 
   const entries = data.filter(
-    (entry: { category: string }) => entry.category === params.slug
+    (entry: { category: string }) => entry.category === slug
   );
 
-  const categoryMeta = CATEGORIES.find((c) => c.key === params.slug);
+  const categoryMeta = CATEGORIES.find((c) => c.key === slug);
   if (!entries.length || !categoryMeta) {
     notFound();
   }

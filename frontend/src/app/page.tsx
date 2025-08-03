@@ -29,8 +29,20 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col gap-[32px] row-start-2 items-center mt-12">
-      <h1 className="text-3xl font-bold">Content Categories</h1>
-      <section className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-4xl">
+      {/* Page Heading with context for SR */}
+      <div>
+        <h1 className="text-3xl font-bold">Content Categories</h1>
+        <p className="sr-only">
+          Browse through {categories.length} content categories to find the
+          information you need.
+        </p>
+      </div>
+
+      {/* Category Cards Section */}
+      <section
+        className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-4xl"
+        aria-label="Content Categories"
+      >
         {categories.map(({ key, title, description }) => (
           <CategoryCard
             key={key}

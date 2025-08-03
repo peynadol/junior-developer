@@ -25,8 +25,7 @@ def process_entry(entry: dict) -> dict:
         source_id = source['id']
         url = source['source']
         domain = urlparse(url).netloc
-        favicon = f"https://{domain}/favicon.ico"
-
+        favicon = f"https://www.google.com/s2/favicons?domain={domain}&sz=64"
         ref_tag = f"<ref>{source_id}</ref>"
 
         if ref_tag in content:

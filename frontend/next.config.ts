@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
       "www.citizensadvice.org.uk",
       "www.police.uk",
       "www.gov.uk",
+      "www.google.com",
     ],
   },
 };

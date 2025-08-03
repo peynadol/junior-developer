@@ -1,5 +1,5 @@
-Backend
-
+BACKEND
+-------
 I began by reading the instructions and interpreted the
 backend task as needing to programmatically scan through each content
 string, detect when a source ID (e.g. \[source123]) was mentioned, and
@@ -18,7 +18,7 @@ the language I’m most comfortable with. This helped me mentally map out the st
 * Separate cited and non-cited sources
 * Attach a favicon URL based on the source domain
 
-Once I was confident in the logic, I translated it into Python using FastAPI.
+Once I was confident in the logic, I translated it into Python.
 I kept all logic scoped to the `/data` endpoint as the task only called
 for one route. Middleware would have been unnecessary for this case.
 
@@ -38,16 +38,47 @@ When Googling this topic, I found that the DOMPurify is a potential aternative s
 I chose not go with this as I had concern over time constraits and the added 
 complexity of sanitising HTML directly. The markdown felt like a nice middleground.
 
+I'm aware that in real world applications, rendering trusted HTML is common 
+(using dangerouslySetInnerHTM with properly sanitised input). I'm happy to adapt 
+if this was the intended pattern.   
+
 I initially created a static CATEGORIES map to clean up category keys
 from the backend (e.g. turning benefits_and_tax_credits into something
 more human-readable) and to add descriptions.
-
 But this meant my homepage cards were only rendering categories listed
 in that map. If new data came in with a new category, it wouldn’t show.
-
 To fix this, I added logic to compare the backend category keys with the
 static list and render fallback cards for any new ones. These use a
 formatted title and a default description.
-
 It’s not perfect, since the backend doesn’t supply descriptions, but it
 keeps the UI dynamic and ensures new content isn’t ignored.
+
+
+FRONTEND
+--------
+
+Styling - I can't pretend that I'm a hot shot web 'designer' 
+so I thought it wise to stand of the shoulders of giants here.
+Seeing as this is an CAB focussed project, then why not take inspiration
+from existing CAB pages? So, that's what I did.  
+
+
+Two areas which I am actively improving in are accessibility and testing.
+I was able to get the general structure and functionality of the application
+down in around 1.5 days. This meant I could spend any remaining time really 
+focussing on accessibility and testing. 
+
+ACCESSIBILITY
+I wanted to make this application as accessible as possible, while also learning
+proper accessibility patterns. I installed 'jsx-a11y' and used it in strict mode 
+to help catch accessibility issues during development. It's the first time I've used 
+this package and it was a nice experience being alerted to any obviously glaring issues.
+
+Key improvements I implented included proper semantic HTML structure, descriptive ARIA
+labels, keyboard nav support, and correct heading hierarchy. The jsx-a11y linter taught
+me that using the right HTML element for the job is key, and reduces the need for complex 
+aria attributes.
+
+I used sources such as WCAG, MDN, A11y, WebAIM, and React docs to guide my implementation.
+WebAIM was especially good for information on designign for screen readers 
+as that's an area I'm admittedly very green on. 

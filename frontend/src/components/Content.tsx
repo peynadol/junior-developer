@@ -1,8 +1,13 @@
 "use client";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
+import { Entry } from "@/types/data";
 
-export default function Content({ entry }: { entry: Entry }) {
+type Props = {
+  entry: Entry;
+};
+
+export default function Content({ entry }: Props) {
   return (
     <article className="text-left text-lg">
       <div className="mb-6 leading-relaxed">

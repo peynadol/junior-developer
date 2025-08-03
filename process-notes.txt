@@ -32,5 +32,22 @@ which I treated like a Python equivalent of TypeScript’s type system.
 It helped ensure the returned data structure matched expectations, 
 and made the contract between backend and frontend more robust.
 
-I'm trying returning markdown formatted content. I think this will
-make it easier to format on the frontend AND remove the need for dangerouslySetInnerHtml
+I decided to return markdown formatted content. My thinking being it will 
+make it easier to format on the frontend AND remove the need for dangerouslySetInnerHtml.
+When Googling this topic, I found that the DOMPurify is a potential aternative solution.
+I chose not go with this as I had concern over time constraits and the added 
+complexity of sanitising HTML directly. The markdown felt like a nice middleground.
+
+I initially created a static CATEGORIES map to clean up category keys
+from the backend (e.g. turning benefits_and_tax_credits into something
+more human-readable) and to add descriptions.
+
+But this meant my homepage cards were only rendering categories listed
+in that map. If new data came in with a new category, it wouldn’t show.
+
+To fix this, I added logic to compare the backend category keys with the
+static list and render fallback cards for any new ones. These use a
+formatted title and a default description.
+
+It’s not perfect, since the backend doesn’t supply descriptions, but it
+keeps the UI dynamic and ensures new content isn’t ignored.

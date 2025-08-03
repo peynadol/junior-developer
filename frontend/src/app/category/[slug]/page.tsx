@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Content from "@/components/Content";
 import { CATEGORIES } from "@/lib/utils";
 import Link from "next/link";
+import { Entry } from "@/types/data";
 
 export default async function CategoryPage({
   params,
@@ -39,7 +40,7 @@ export default async function CategoryPage({
       </h2>
 
       <div className="flex flex-col gap-8 w-full max-w-3xl">
-        {entries.map((entry, i) => (
+        {entries.map((entry: Entry, i: number) => (
           <Content key={i} entry={entry} />
         ))}
       </div>

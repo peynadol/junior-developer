@@ -5,12 +5,16 @@ export type Source = {
   favicon: string;
 };
 
+export type EnrichedSource = Source & {
+  letter: string;
+};
+
 export type Entry = {
   category: string;
   original_content: string;
   processed_content: string;
   sources: {
-    cited: Source[];
+    cited: EnrichedSource[];
     non_cited: Source[];
   };
 };

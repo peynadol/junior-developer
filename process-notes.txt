@@ -53,6 +53,11 @@ formatted title and a default description.
 It’s not perfect, since the backend doesn’t supply descriptions, but it
 keeps the UI dynamic and ensures new content isn’t ignored.
 
+This was my first time implementing tests in Python. I used pytest as it appears to be 
+the industry standard. Initially I tried a tests/ folder structure, but considering the size 
+of the test and what I was testing, I decided to co locate the test file with main.py. 
+It avoided any import path complexity. 
+
 
 FRONTEND
 --------
@@ -81,3 +86,6 @@ aria attributes.
 I used sources such as WCAG, MDN, A11y, WebAIM, and React docs to guide my implementation.
 WebAIM was especially good for information on designign for screen readers 
 as that's an area I'm admittedly very green on. 
+
+
+

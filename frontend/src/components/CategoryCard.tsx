@@ -33,6 +33,8 @@ const CategoryCard = ({
             aria-hidden="true"
           >
             Find Out More
+            {/* Could replace this SVG with an icon.
+            Opted for SVG to save importing a library just for this. */}
             <svg
               className="w-4 h-4 transition-transform group-hover:translate-x-1"
               fill="none"

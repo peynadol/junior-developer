@@ -62,7 +62,6 @@ so I thought it wise to stand of the shoulders of giants here.
 Seeing as this is an CAB focussed project, then why not take inspiration
 from existing CAB pages? So, that's what I did.  
 
-
 Two areas which I am actively improving in are accessibility and testing.
 I was able to get the general structure and functionality of the application
 down in around 1.5 days. This meant I could spend any remaining time really 

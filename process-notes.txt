@@ -53,6 +53,7 @@ formatted title and a default description.
 It’s not perfect, since the backend doesn’t supply descriptions, but it
 keeps the UI dynamic and ensures new content isn’t ignored.
 
+BACKEND TESTING
 This was my first time implementing tests in Python. I used pytest as it appears to be 
 the industry standard. Initially I tried a tests/ folder structure, but considering the size 
 of the test and what I was testing, I decided to co locate the test file with main.py. 
@@ -87,5 +88,27 @@ I used sources such as WCAG, MDN, A11y, WebAIM, and React docs to guide my imple
 WebAIM was especially good for information on designign for screen readers 
 as that's an area I'm admittedly very green on. 
 
+FRONTEND TESTING
+Through out my testing learning journey I've learned about the testing pyramid and the different roles of 
+unit tests (individual functions), component tests with React Testing Library 
+(component behavior), and end-to-end tests with Playwright (full user journeys).
 
+For an application of this complexity, with primarily presentational components 
+and minimal business logic, I figured that E2E testing would provide the most 
+value. My components are largely concerned with rendering data rather than complex 
+state management or calculations that would benefit from unit testing.
 
+E2E testing allows me to validate the complete user experience: navigation between 
+pages, data fetching from the backend, accessibility features like keyboard 
+navigation, and external link functionality. This approach tests the integration 
+between frontend and backend while ensuring the user workflows actually work.
+
+I'm still developing my understanding of when to use each testing approach, but 
+for this project's scope and my learning goals, E2E testing covers the critical 
+functionality that needs validation.
+
+I used Playwright to validate complete user workflows: 
+category navigation, breadcrumb functionality, and keyboard accessibility. 
+I encountered browser specific behavior with WebKit's tab navigation and 
+handled this by skipping that specific test for Safari while maintaining 
+coverage in Chrome and Firefox.

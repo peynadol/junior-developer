@@ -7,9 +7,9 @@ import { Entry } from "@/types/data";
 export default async function CategoryPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/data`, {
     cache: "no-store",
   });

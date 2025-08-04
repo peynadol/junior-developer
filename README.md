@@ -10,7 +10,7 @@
 
 This is a full stack practical for Junior Developer at Citizens Advice SORT. The project consists of a full-stack application with a Python backend and Next.js frontend.
 
-**Live Demo:** https://junior-developer.vercel.app
+**Live Demo:** https://junior-developer.vercel.app - Please note the backend is hosted on Render, so may take a while to spin up.
 
 ## Project Structure
 

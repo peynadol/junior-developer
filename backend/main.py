@@ -3,7 +3,6 @@ from fastapi import FastAPI
 from models import Data
 from pathlib import Path
 from urllib.parse import urlparse
-import string
 
 def process_entry(entry: dict) -> dict:
     from urllib.parse import urlparse

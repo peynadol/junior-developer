@@ -10,6 +10,8 @@
 
 This is a full stack practical for Junior Developer at Citizens Advice SORT. The project consists of a full-stack application with a Python backend and Next.js frontend.
 
+**Live Demo:** https://junior-developer.vercel.app
+
 ## Project Structure
 
 ```
@@ -105,3 +107,9 @@ npm run dev
 ## API Endpoints
 
 - `GET /data` - Returns the list of data
+
+## Deployment
+
+The project has been fully deployed to allow both reviewers and end users to interact with it without needing to clone or run it locally.
+
+This was my first time deploying a Python FastAPI backend, and it was a valuable learning experience. I used Render to host the backend. The frontend was deployed to Vercel as a Next.js project, with environment variables used to point it to the correct backend URL in both development and production.

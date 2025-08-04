@@ -112,3 +112,16 @@ category navigation, breadcrumb functionality, and keyboard accessibility.
 I encountered browser specific behavior with WebKit's tab navigation and 
 handled this by skipping that specific test for Safari while maintaining 
 coverage in Chrome and Firefox.
+
+DEPLOYMENT
+----------
+I chose to deploy this project for two reasons really, to benefit the reviewer 
+and/ or the end user, and to improve my deployment skills.
+I've deployed applications before, but it's still something i'm not completely 
+comfortable with. I usually have to dig into documentation and work through 
+various deployment errors. 
+This was my first time deploying a Python backend, I opted for Render as i've
+deployed a backend on there before, and i'd read it plays fairly well with Poetry.
+To my surprise it deployed successfully first time. 
+For the Next side of things it made sense for me to choose Vercel for deployment.
+It intergrates well with the framework and makes the process simple.

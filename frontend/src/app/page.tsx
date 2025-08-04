@@ -9,7 +9,9 @@ type Category = {
 };
 
 export default async function Home() {
-  const res = await fetch("http://localhost:3000/api/data", {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
+  const res = await fetch(`${baseUrl}/api/data`, {
     cache: "no-store",
   });
   const data: Entry[] = await res.json();

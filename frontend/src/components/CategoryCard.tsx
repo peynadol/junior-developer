@@ -15,7 +15,7 @@ const CategoryCard = ({
       className="group block focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md"
       aria-label={`View ${title} category content`}
     >
-      <article className="min-h-[170px] border-2 border-background border-t-8 p-4 shadow-sm group-hover:shadow-md transition cursor-pointer rounded-md bg-white mx-4">
+      <article className="min-h-[170px] border-2 border-background border-t-8 p-4 shadow-sm group-hover:shadow-md transition cursor-pointer rounded-md bg-white mx-4 lg:mx-0">
         {/* Card header */}
         <header>
           <h2 className="text-gray-800 text-lg font-semibold mb-2">{title}</h2>

@@ -10,7 +10,7 @@ export default async function CategoryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/data`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/data`, {
     cache: "no-store",
   });
   const data = await res.json();

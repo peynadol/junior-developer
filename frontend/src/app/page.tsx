@@ -11,7 +11,7 @@ type Category = {
 export default async function Home() {
   const baseUrl =
     process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
-  const res = await fetch(`${baseUrl}/api/data`, {
+  const res = await fetch(`${baseUrl}/data`, {
     cache: "no-store",
   });
   const data: Entry[] = await res.json();

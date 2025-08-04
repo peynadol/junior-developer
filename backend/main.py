@@ -1,8 +1,8 @@
 import json
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from models import Data
 from pathlib import Path
-from urllib.parse import urlparse
 
 def process_entry(entry: dict) -> dict:
     from urllib.parse import urlparse
@@ -60,6 +60,14 @@ def process_entry(entry: dict) -> dict:
 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], #TODO: Replace with frontend URL in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/data", response_model=list[Data])
